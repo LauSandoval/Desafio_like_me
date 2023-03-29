@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const {agregarPosts, leerPosts} = require('./consulta');
+const {agregarPosts, leerPosts, editarPosts} = require('./consulta');
 const cors = require('cors');
 app.use(cors())
 app.use(express.json());
@@ -20,3 +20,9 @@ app.post('/posts', async(req, res) => {
     await agregarPosts(titulo,url,descripcion);
     // res.json(post);
 });
+
+app.put('/posts/:id', async (req, res) => {
+  const {titulo, url, descripcion} = req.body;
+  console.log(req.params.id);
+  await editarPosts(req.params.id,titulo,url,descripcion);
+  })

@@ -17,6 +17,18 @@ const agregarPosts = async (titulo,img,descripcion,likes) => {
     const results = await pool.query(consulta, values);
     console.log('Post agregado');
 }
+
+const editarPosts = async (id,titulo,img,descripcion,likes) => {
+    try {
+        console.log(titulo)
+        const buscar = "UPDATE posts SET titulo = " +"'" + titulo +"'" + " WHERE id = " + id 
+        const results = await pool.query(buscar);
+        // console.log(results.rows)
+        console.log('Post editado');
+    } catch (error) {
+        console.log(error)
+    }
+}
   
 
 const leerPosts = async () => {
@@ -27,5 +39,6 @@ const leerPosts = async () => {
 
 module.exports = {
     agregarPosts,
-    leerPosts
+    leerPosts,
+    editarPosts
 };
